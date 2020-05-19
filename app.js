@@ -4,6 +4,8 @@ const app = express();
 const morgan = require('morgan');
 const productRoutes = require('./api/routes/products')
 const ordersRoutes = require('./api/routes/orders')
+const userRoutes = require('./api/routes/users')
+const categoryRoutes = require('./api/routes/categories')
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -22,6 +24,8 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes);
 app.use('/orders', ordersRoutes);
+app.use('/user', userRoutes)
+app.use('/categories', categoryRoutes)
 
 const uri = 'mongodb+srv://' + process.env.DBUSR + ':' + process.env.DBPW + '@neighbors-api-b2sdo.mongodb.net/neighbors?retryWrites=true&w=majority'
 
