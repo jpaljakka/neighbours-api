@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Categories = require('../models/categories')
 
-router.post('/', (req, res, next) => {
+router.post('/entry', (req, res, next) => {
     const category = new Categories({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name
