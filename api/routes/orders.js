@@ -7,7 +7,7 @@ const Order = require('../models/order')
 router.get('/', (req, res, next) => {
     Order.find()
         .select('_id firstname lastname username phone address order ')
-        .populate('name')
+        .populate('name')// populate here ?
         .then(docs => {
             res.status(200).jsonp({
                 count: docs.length,
@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
                         order: doc.order,
                         request: {
                             method: 'GET',
-                            url: 'http://localhost:5000/orders/' + doc._id
+                            url: doc._id
                         }
                     }
                 })
@@ -40,6 +40,7 @@ router.get('/', (req, res, next) => {
 //order from customer side
 router.post('/', (req, res, next) => {
     Product.findById(req.body.productId)
+        .populate('name')  //ask hoang about this
         .exec()
         .then(product => {
             /* if (!product) {
@@ -56,6 +57,7 @@ router.post('/', (req, res, next) => {
                 phone: req.body.phone,
                 order: {
                     product: req.body.product,
+                    name: req.body.name,  //ask hoang
                     quantity: req.body.quantity,
                 }
             });

@@ -20,7 +20,6 @@ router.post('/entry', (req, res, next) => {
                     request: {
                         type: 'GET',
                         url: `url${result._id}`
-
                     }
                 }
             });
